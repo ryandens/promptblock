@@ -1,7 +1,7 @@
 # Build and run the promptblock Probot app.
 # @stackone/defender bundles a ~22MB ONNX model, so no model download is needed
 # at runtime — but the image is correspondingly larger.
-FROM node:20-slim AS build
+FROM node:22-slim AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -9,7 +9,7 @@ COPY tsconfig.json ./
 COPY src ./src
 RUN npm run build
 
-FROM node:20-slim
+FROM node:22-slim
 ENV NODE_ENV=production
 WORKDIR /app
 COPY package*.json ./

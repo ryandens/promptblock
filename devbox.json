@@ -1,0 +1,22 @@
+{
+  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.17.3/.schema/devbox.schema.json",
+  "packages": {
+    "nodejs@22": {
+      "comment": "Plugin disabled: its corepack init hook is an ESM-incompatible .js helper that crashes in this \"type\": \"module\" project. We use plain npm, so corepack wiring isn't needed.",
+      "disable_plugin": true
+    }
+  },
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+    ],
+    "scripts": {
+      "build": [
+        "npm run build"
+      ],
+      "test": [
+        "npm test"
+      ]
+    }
+  }
+}

@@ -39,7 +39,7 @@ async function react(
     "prompt injection flagged",
   );
 
-  await context.octokit.issues.addLabels({
+  await context.octokit.rest.issues.addLabels({
     ...repo,
     issue_number: issueNumber,
     labels: [FLAG_LABEL],
@@ -56,7 +56,7 @@ async function react(
     ? "\n\n> ⚠️ At least one flagged segment was hidden inside an HTML comment and is **not visible** in the rendered issue. An automated agent reading the raw text would still ingest it."
     : "";
 
-  await context.octokit.issues.createComment({
+  await context.octokit.rest.issues.createComment({
     ...repo,
     issue_number: issueNumber,
     body: `🛡️ **promptblock** detected content that resembles a prompt-injection attempt:\n\n${lines.join("\n")}${hiddenNote}\n\n_Scanned with [@stackone/defender](https://github.com/StackOneHQ/defender). Review before letting any AI agent act on this thread._`,

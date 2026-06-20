@@ -1,0 +1,8 @@
+node_modules
+lib
+.git
+.github
+*.pem
+.env
+.env.local
+test

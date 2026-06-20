@@ -37,6 +37,24 @@ To register the app against GitHub, run `npm start` once and follow Probot's
 manifest flow (the manifest lives in `app.yml`), or create the app manually and
 fill in `.env` from `.env.example`.
 
+## Deploy
+
+A multi-stage `Dockerfile` is included:
+
+```bash
+docker build -t promptblock .
+docker run -p 3000:3000 \
+  -e APP_ID=... -e WEBHOOK_SECRET=... -e PRIVATE_KEY="$(cat private-key.pem)" \
+  promptblock
+```
+
+Point the GitHub App's webhook URL at the running container (use a smee.io proxy
+locally). The image bundles defender's ~22MB ONNX model, so no download happens
+at runtime.
+
+CI (`.github/workflows/ci.yml`) runs typecheck, build, and tests on every push
+and pull request to `main`.
+
 ## Layout
 
 | File              | Responsibility                                            |

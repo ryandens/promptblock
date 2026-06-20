@@ -9,12 +9,12 @@
     "build": "tsc",
     "start": "probot run ./lib/index.js",
     "dev": "tsc --watch & probot run ./lib/index.js",
-    "test": "node --test --import tsx test/",
+    "test": "node --import tsx --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@stackone/defender": "^0.1.0",
-    "probot": "^13.4.0"
+    "@stackone/defender": "^0.7.1",
+    "probot": "^14.3.2"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -41,8 +41,9 @@ manually and fill in `.env` from `.env.example`.
 
 Dependency installs are subject to a supply-chain policy in
 `pnpm-workspace.yaml`: no package version is installed until it has been public
-for at least 5 days (`minimumReleaseAge`), and only allow-listed packages may
-run install scripts (`onlyBuiltDependencies`).
+for at least 5 days (`minimumReleaseAge`), and no package may run install/build
+scripts (`onlyBuiltDependencies: []`). Tests run on Node's built-in TypeScript
+support, so the dependency tree needs no build step.
 
 ## Deploy
 

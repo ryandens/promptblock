@@ -9,7 +9,7 @@
     "build": "tsc",
     "start": "probot run ./lib/index.js",
     "dev": "tsc --watch & probot run ./lib/index.js",
-    "test": "node --import tsx --test \"test/**/*.test.ts\"",
+    "test": "node --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -18,11 +18,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "tsx": "^4.19.0",
     "typescript": "^5.6.0"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.18"
   },
   "packageManager": "pnpm@11.8.0",
   "license": "Apache-2.0"

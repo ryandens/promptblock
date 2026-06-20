@@ -4,8 +4,6 @@
 # of a malicious publish. See https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 7200
 
-# By default pnpm blocks dependency build scripts. esbuild (pulled in by tsx,
-# our test runner) needs its postinstall to set up its platform binary, so it
-# is allow-listed explicitly; nothing else may run install scripts.
-onlyBuiltDependencies:
-  - esbuild
+# No dependency is allowed to run install/build scripts. Tests run on Node's
+# built-in TypeScript support, so the tree carries no packages that need one.
+onlyBuiltDependencies: []

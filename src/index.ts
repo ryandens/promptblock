@@ -5,7 +5,7 @@ const FLAG_LABEL = "possible-prompt-injection";
 
 export default (app: Probot) => {
   // Warm the ML model at boot so the first issue doesn't pay the load cost.
-  void warmup().catch((err) => app.log.warn({ err }, "defender warmup failed"));
+  void warmup().catch((err) => app.log.warn({ err }, "scanner warmup failed"));
 
   app.on(["issues.opened", "issues.edited"], async (context) => {
     const { issue } = context.payload;
@@ -59,6 +59,6 @@ async function react(
   await context.octokit.rest.issues.createComment({
     ...repo,
     issue_number: issueNumber,
-    body: `🛡️ **promptblock** detected content that resembles a prompt-injection attempt:\n\n${lines.join("\n")}${hiddenNote}\n\n_Scanned with [@stackone/defender](https://github.com/StackOneHQ/defender). Review before letting any AI agent act on this thread._`,
+    body: `🛡️ **promptblock** detected content that resembles a prompt-injection attempt:\n\n${lines.join("\n")}${hiddenNote}\n\n_Review before letting any AI agent act on this thread._`,
   });
 }

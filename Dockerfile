@@ -1,6 +1,6 @@
 # Build and run the promptblock Probot app.
-# @stackone/defender bundles a ~22MB ONNX model, so no model download is needed
-# at runtime — but the image is correspondingly larger.
+# The prompt-injection scanner bundles a ~22MB ONNX model, so no model download
+# is needed at runtime — but the image is correspondingly larger.
 FROM node:22-slim AS build
 WORKDIR /app
 COPY package*.json ./

@@ -1,8 +1,8 @@
 # promptblock
 
 A [Probot](https://github.com/probot/probot) GitHub App that scans issues and
-comments for **prompt-injection attempts** using
-[`@stackone/defender`](https://github.com/StackOneHQ/defender).
+comments for **prompt-injection attempts** using a bundled, ML-based
+prompt-injection classifier.
 
 Its particular focus is content that a human reviewer never sees but an
 AI agent does: **text hidden inside HTML comments** (`<!-- ... -->`). GitHub's
@@ -15,7 +15,7 @@ payloads.
 
 1. On `issues` and `issue_comment` events, the raw body is split into
    **visible text** and each **HTML comment** (`src/extract.ts`).
-2. Every segment is scanned independently through defender's three-tier cascade
+2. Every segment is scanned independently through the scanner's tiered cascade
    (`src/scan.ts`) so a benign visible body can't mask a malicious hidden one.
 3. If anything is flagged, the app labels the issue `possible-prompt-injection`
    and leaves one warning comment — calling out specifically when the offending
@@ -49,8 +49,8 @@ docker run -p 3000:3000 \
 ```
 
 Point the GitHub App's webhook URL at the running container (use a smee.io proxy
-locally). The image bundles defender's ~22MB ONNX model, so no download happens
-at runtime.
+locally). The image bundles the scanner's ~22MB ONNX model, so no download
+happens at runtime.
 
 CI (`.github/workflows/ci.yml`) runs typecheck, build, and tests on every push
 and pull request to `main`.
@@ -60,7 +60,7 @@ and pull request to `main`.
 | File              | Responsibility                                            |
 | ----------------- | --------------------------------------------------------- |
 | `src/extract.ts`  | Split a body into visible text and hidden HTML comments.  |
-| `src/scan.ts`     | Run each segment through `@stackone/defender`.            |
+| `src/scan.ts`     | Run each segment through the prompt-injection scanner.    |
 | `src/index.ts`    | Probot webhook handlers: label + warn on a flagged scan.  |
 | `app.yml`         | GitHub App manifest (permissions + events).               |
 

@@ -2,10 +2,10 @@ import { createPromptDefense } from "@stackone/defender";
 import { extractSegments, type ExtractedSegment } from "./extract.js";
 
 /**
- * Wraps @stackone/defender so the rest of the app can scan a raw issue/comment
- * body without caring about how the body is segmented. Each segment (visible
- * text and each HTML comment) is scanned independently so a clean visible body
- * can't dilute a malicious hidden payload.
+ * Wraps the prompt-injection scanner so the rest of the app can scan a raw
+ * issue/comment body without caring about how the body is segmented. Each
+ * segment (visible text and each HTML comment) is scanned independently so a
+ * clean visible body can't dilute a malicious hidden payload.
  */
 
 // One shared defense instance — it lazily loads a ~22MB ONNX model on first
@@ -14,9 +14,9 @@ const defense = createPromptDefense({ blockHighRisk: true });
 
 export interface SegmentFinding {
   segment: ExtractedSegment;
-  /** Whether defender would allow this content through to an LLM. */
+  /** Whether the scanner would allow this content through to an LLM. */
   allowed: boolean;
-  /** "low" | "medium" | "high" per defender's risk taxonomy. */
+  /** "low" | "medium" | "high" risk taxonomy. */
   riskLevel: string;
   /** Tier 2 ML classifier score, when present. */
   score?: number;
@@ -36,7 +36,7 @@ export async function warmup(): Promise<void> {
 }
 
 /**
- * Scan a raw body. `source` is passed to defender as the "tool name" so its
+ * Scan a raw body. `source` is passed to the scanner as the "tool name" so its
  * logs/telemetry attribute the content to where it came from.
  */
 export async function scanBody(body: string, source: string): Promise<ScanResult> {

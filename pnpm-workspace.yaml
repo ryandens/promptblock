@@ -1,0 +1,11 @@
+# Supply-chain guard: don't install any package version until it has been
+# public for at least 5 days (7200 minutes). This blunts fast-moving npm
+# account-compromise campaigns that rely on installs happening within hours
+# of a malicious publish. See https://pnpm.io/settings#minimumreleaseage
+minimumReleaseAge: 7200
+
+# By default pnpm blocks dependency build scripts. esbuild (pulled in by tsx,
+# our test runner) needs its postinstall to set up its platform binary, so it
+# is allow-listed explicitly; nothing else may run install scripts.
+onlyBuiltDependencies:
+  - esbuild

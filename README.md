@@ -25,16 +25,24 @@ The app never echoes the raw injection payload back into the thread; it reports
 
 ## Develop
 
+This project uses [pnpm](https://pnpm.io) (pinned via the `packageManager`
+field; run `corepack enable` once to activate it).
+
 ```bash
-npm install
-npm run build
-npm test          # runs the extraction unit tests
-npm start         # runs the app (needs a .env — see .env.example)
+pnpm install
+pnpm build
+pnpm test          # runs the extraction unit tests
+pnpm start         # runs the app (needs a .env — see .env.example)
 ```
 
-To register the app against GitHub, run `npm start` once and follow the
+To register the app against GitHub, run `pnpm start` once and follow the
 manifest registration flow (the manifest lives in `app.yml`), or create the app
 manually and fill in `.env` from `.env.example`.
+
+Dependency installs are subject to a supply-chain policy in
+`pnpm-workspace.yaml`: no package version is installed until it has been public
+for at least 5 days (`minimumReleaseAge`), and only allow-listed packages may
+run install scripts (`onlyBuiltDependencies`).
 
 ## Deploy
 

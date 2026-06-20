@@ -3,18 +3,21 @@
 # is needed at runtime — but the image is correspondingly larger.
 FROM node:22-slim AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+RUN corepack enable
+# pnpm-workspace.yaml carries the build-script allowlist and supply-chain policy.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY tsconfig.json ./
 COPY src ./src
-RUN npm run build
+RUN pnpm run build
 
 FROM node:22-slim
 ENV NODE_ENV=production
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN corepack enable
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile --prod
 COPY --from=build /app/lib ./lib
 # The app reads APP_ID / PRIVATE_KEY / WEBHOOK_SECRET from the environment.
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]

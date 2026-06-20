@@ -2,20 +2,32 @@
   "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.17.3/.schema/devbox.schema.json",
   "packages": {
     "nodejs@22": {
-      "comment": "Plugin disabled: its corepack init hook is an ESM-incompatible .js helper that crashes in this \"type\": \"module\" project. We use plain npm, so corepack wiring isn't needed.",
+      "comment": "Plugin disabled: its corepack init hook ships an ESM-incompatible .js helper that crashes in this \"type\": \"module\" project. We drive corepack directly from init_hook instead (see below), which honors the pnpm version pinned in package.json's packageManager field.",
       "disable_plugin": true
     }
   },
+  "env": {
+    "COREPACK_HOME": "$PWD/.devbox/corepack",
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0",
+    "PATH": "$PWD/.devbox/corepack/bin:$PATH"
+  },
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
+      "mkdir -p \"$PWD/.devbox/corepack/bin\"",
+      "corepack enable pnpm --install-directory \"$PWD/.devbox/corepack/bin\""
     ],
     "scripts": {
+      "install": [
+        "pnpm install"
+      ],
       "build": [
-        "npm run build"
+        "pnpm run build"
       ],
       "test": [
-        "npm test"
+        "pnpm test"
+      ],
+      "dev": [
+        "pnpm run dev"
       ]
     }
   }

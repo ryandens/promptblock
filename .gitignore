@@ -4,6 +4,9 @@ lib/
 .env
 .env.local
 
-# Probot app private key + runtime secrets
+# GitHub App private key + runtime secrets
 *.pem
 .data/
+
+# devbox-managed corepack/pnpm shims
+.devbox/

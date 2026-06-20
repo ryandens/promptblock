@@ -1,7 +1,7 @@
 # Build and run the promptblock app.
 # The prompt-injection scanner bundles a ~22MB ONNX model, so no model download
 # is needed at runtime — but the image is correspondingly larger.
-FROM node:22-slim AS build
+FROM node:24-slim AS build
 WORKDIR /app
 RUN corepack enable
 # pnpm-workspace.yaml carries the build-script allowlist and supply-chain policy.
@@ -11,7 +11,7 @@ COPY tsconfig.json ./
 COPY src ./src
 RUN pnpm run build
 
-FROM node:22-slim
+FROM node:24-slim
 ENV NODE_ENV=production
 WORKDIR /app
 RUN corepack enable

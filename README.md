@@ -55,15 +55,6 @@ happens at runtime.
 CI (`.github/workflows/ci.yml`) runs typecheck, build, and tests on every push
 and pull request to `main`.
 
-## Layout
-
-| File              | Responsibility                                            |
-| ----------------- | --------------------------------------------------------- |
-| `src/extract.ts`  | Split a body into visible text and hidden HTML comments.  |
-| `src/scan.ts`     | Run each segment through the prompt-injection scanner.    |
-| `src/index.ts`    | Probot webhook handlers: label + warn on a flagged scan.  |
-| `app.yml`         | GitHub App manifest (permissions + events).               |
-
 ## License
 
 MIT

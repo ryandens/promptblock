@@ -2,7 +2,7 @@
   "name": "promptblock",
   "version": "0.1.0",
   "private": true,
-  "description": "A Probot GitHub App that scans issues and comments for prompt injection — including content hidden in HTML comments.",
+  "description": "A GitHub App that scans issues and comments for prompt injection — including content hidden in HTML comments.",
   "type": "module",
   "main": "lib/index.js",
   "scripts": {
@@ -24,5 +24,5 @@
   "engines": {
     "node": ">=22"
   },
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

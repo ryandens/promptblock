@@ -1,4 +1,4 @@
-# Build and run the promptblock Probot app.
+# Build and run the promptblock app.
 # The prompt-injection scanner bundles a ~22MB ONNX model, so no model download
 # is needed at runtime — but the image is correspondingly larger.
 FROM node:22-slim AS build
@@ -15,6 +15,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 COPY --from=build /app/lib ./lib
-# Probot reads APP_ID / PRIVATE_KEY / WEBHOOK_SECRET from the environment.
+# The app reads APP_ID / PRIVATE_KEY / WEBHOOK_SECRET from the environment.
 EXPOSE 3000
 CMD ["npm", "start"]

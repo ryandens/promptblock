@@ -1,5 +1,4 @@
-# GitHub App manifest used by Probot to register the app.
-# See https://probot.github.io/docs/deployment/#app-manifest
+# GitHub App manifest (permissions + events) used to register the app.
 name: promptblock
 description: Scans GitHub issues and comments for prompt injection, including content hidden in HTML comments.
 public: false

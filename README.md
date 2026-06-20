@@ -1,8 +1,7 @@
 # promptblock
 
-A [Probot](https://github.com/probot/probot) GitHub App that scans issues and
-comments for **prompt-injection attempts** using a bundled, ML-based
-prompt-injection classifier.
+A GitHub App that scans issues and comments for **prompt-injection attempts**
+using a bundled, ML-based prompt-injection classifier.
 
 Its particular focus is content that a human reviewer never sees but an
 AI agent does: **text hidden inside HTML comments** (`<!-- ... -->`). GitHub's
@@ -30,12 +29,12 @@ The app never echoes the raw injection payload back into the thread; it reports
 npm install
 npm run build
 npm test          # runs the extraction unit tests
-npm start         # runs the Probot app (needs a .env — see .env.example)
+npm start         # runs the app (needs a .env — see .env.example)
 ```
 
-To register the app against GitHub, run `npm start` once and follow Probot's
-manifest flow (the manifest lives in `app.yml`), or create the app manually and
-fill in `.env` from `.env.example`.
+To register the app against GitHub, run `npm start` once and follow the
+manifest registration flow (the manifest lives in `app.yml`), or create the app
+manually and fill in `.env` from `.env.example`.
 
 ## Deploy
 
@@ -57,4 +56,4 @@ and pull request to `main`.
 
 ## License
 
-MIT
+[Apache 2.0](./LICENSE)

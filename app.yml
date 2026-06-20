@@ -1,0 +1,14 @@
+# GitHub App manifest used by Probot to register the app.
+# See https://probot.github.io/docs/deployment/#app-manifest
+name: promptblock
+description: Scans GitHub issues and comments for prompt injection, including content hidden in HTML comments.
+public: false
+
+default_permissions:
+  # Read issue/comment bodies and write labels + warning comments.
+  issues: write
+  metadata: read
+
+default_events:
+  - issues
+  - issue_comment

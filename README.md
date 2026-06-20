@@ -1,0 +1,51 @@
+# promptblock
+
+A [Probot](https://github.com/probot/probot) GitHub App that scans issues and
+comments for **prompt-injection attempts** using
+[`@stackone/defender`](https://github.com/StackOneHQ/defender).
+
+Its particular focus is content that a human reviewer never sees but an
+AI agent does: **text hidden inside HTML comments** (`<!-- ... -->`). GitHub's
+Markdown renderer drops these, so they're invisible in the rendered issue — but
+any agent that reads the raw issue body (via the REST/GraphQL API) ingests them
+in full. That makes the HTML comment an ideal smuggling channel for injection
+payloads.
+
+## How it works
+
+1. On `issues` and `issue_comment` events, the raw body is split into
+   **visible text** and each **HTML comment** (`src/extract.ts`).
+2. Every segment is scanned independently through defender's three-tier cascade
+   (`src/scan.ts`) so a benign visible body can't mask a malicious hidden one.
+3. If anything is flagged, the app labels the issue `possible-prompt-injection`
+   and leaves one warning comment — calling out specifically when the offending
+   content was **hidden** (`src/index.ts`).
+
+The app never echoes the raw injection payload back into the thread; it reports
+*where* and *how risky*, not the verbatim attack string.
+
+## Develop
+
+```bash
+npm install
+npm run build
+npm test          # runs the extraction unit tests
+npm start         # runs the Probot app (needs a .env — see .env.example)
+```
+
+To register the app against GitHub, run `npm start` once and follow Probot's
+manifest flow (the manifest lives in `app.yml`), or create the app manually and
+fill in `.env` from `.env.example`.
+
+## Layout
+
+| File              | Responsibility                                            |
+| ----------------- | --------------------------------------------------------- |
+| `src/extract.ts`  | Split a body into visible text and hidden HTML comments.  |
+| `src/scan.ts`     | Run each segment through `@stackone/defender`.            |
+| `src/index.ts`    | Probot webhook handlers: label + warn on a flagged scan.  |
+| `app.yml`         | GitHub App manifest (permissions + events).               |
+
+## License
+
+MIT

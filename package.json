@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.0.0",
+    "@huggingface/transformers": "^4.0.0",
     "@stackone/defender": "^0.7.1",
     "probot": "^14.3.2"
   },

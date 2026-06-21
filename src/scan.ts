@@ -1,5 +1,5 @@
 import { createPromptDefense } from "@stackone/defender";
-import { extractSegments, type ExtractedSegment } from "./extract.js";
+import { type ExtractedSegment, extractSegments } from "./extract.js";
 
 /**
  * Wraps the prompt-injection scanner so the rest of the app can scan a raw
@@ -39,12 +39,16 @@ export async function warmup(): Promise<void> {
  * Scan a raw body. `source` is passed to the scanner as the "tool name" so its
  * logs/telemetry attribute the content to where it came from.
  */
-export async function scanBody(body: string, source: string): Promise<ScanResult> {
+export async function scanBody(
+  body: string,
+  source: string,
+): Promise<ScanResult> {
   const segments = extractSegments(body);
   const findings: SegmentFinding[] = [];
 
   for (const segment of segments) {
-    const label = segment.kind === "html-comment" ? `${source}:html-comment` : source;
+    const label =
+      segment.kind === "html-comment" ? `${source}:html-comment` : source;
     const result = await defense.defendToolResult(segment.text, label);
     findings.push({
       segment,
@@ -57,7 +61,9 @@ export async function scanBody(body: string, source: string): Promise<ScanResult
   const flaggedFindings = findings.filter((f) => !f.allowed);
   return {
     flagged: flaggedFindings.length > 0,
-    hiddenInjection: flaggedFindings.some((f) => f.segment.kind === "html-comment"),
+    hiddenInjection: flaggedFindings.some(
+      (f) => f.segment.kind === "html-comment",
+    ),
     findings,
   };
 }

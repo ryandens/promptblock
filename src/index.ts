@@ -1,6 +1,6 @@
-import type { Probot, Context } from "probot";
-import { scanBody, warmup, type ScanResult } from "./scan.js";
+import type { Context, Probot } from "probot";
 import { examine } from "./examine.js";
+import { type ScanResult, scanBody, warmup } from "./scan.js";
 
 const FLAG_LABEL = "possible-prompt-injection";
 
@@ -81,7 +81,11 @@ async function flagIssue(
 ): Promise<void> {
   const repo = context.repo();
   context.log.warn(
-    { issue: issueNumber, hidden: result.hiddenInjection, findings: result.findings },
+    {
+      issue: issueNumber,
+      hidden: result.hiddenInjection,
+      findings: result.findings,
+    },
     "prompt injection flagged",
   );
 
@@ -93,7 +97,10 @@ async function flagIssue(
 
   const flagged = result.findings.filter((f) => !f.allowed);
   const lines = flagged.map((f) => {
-    const where = f.segment.kind === "html-comment" ? "hidden HTML comment" : "visible text";
+    const where =
+      f.segment.kind === "html-comment"
+        ? "hidden HTML comment"
+        : "visible text";
     const score = f.score !== undefined ? `, score ${f.score.toFixed(2)}` : "";
     return `- **${where}** — risk \`${f.riskLevel}\`${score}`;
   });

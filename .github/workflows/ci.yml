@@ -24,6 +24,7 @@ jobs:
           mode: firewall-free
       # `sfw` wraps the package manager so the install goes through the firewall.
       - run: sfw pnpm install --frozen-lockfile
+      - run: pnpm run lint
       - run: pnpm run typecheck
       - run: pnpm run build
       - run: pnpm test

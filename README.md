@@ -23,6 +23,29 @@ payloads.
 The app never echoes the raw injection payload back into the thread; it reports
 *where* and *how risky*, not the verbatim attack string.
 
+## Install
+
+The hosted app lives at **<https://github.com/apps/promptblock>**.
+
+1. Open <https://github.com/apps/promptblock> and click **Install** (or
+   **Configure** if it's already installed).
+2. Choose the account or organization to install it on.
+3. Pick the repositories to protect — **All repositories** or a hand-picked
+   **Only select repositories** list. You can change this selection any time
+   from the same page.
+4. Confirm. promptblock starts scanning new issues and comments on the selected
+   repos immediately; nothing else to configure.
+
+The app requests only the permissions it needs: **read & write** on issues (to
+add the `possible-prompt-injection` label and warning comment) and **read** on
+metadata. It subscribes to the `issues` and `issue_comment` webhook events.
+
+To stop it, open the same page and either deselect repositories or uninstall it
+under **Settings → Applications → Installed GitHub Apps** on your account/org.
+
+> Prefer to run your own instance instead of the hosted app? See
+> [Deploy](#deploy) to self-host it from the bundled Docker image.
+
 ## Develop
 
 This project uses [pnpm](https://pnpm.io) (pinned via the `packageManager`

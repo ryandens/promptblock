@@ -322,13 +322,11 @@
           <span class="badge">Self-hostable</span>
         </div>
         <div class="cta-row">
-          <a class="cta primary" href="https://github.com/ryandens/promptblock"
-            >View on GitHub</a
+          <a class="cta primary" href="https://github.com/apps/promptblock"
+            >Install on GitHub</a
           >
-          <a
-            class="cta ghost"
-            href="https://github.com/ryandens/promptblock#deploy"
-            >Deploy it</a
+          <a class="cta ghost" href="https://github.com/ryandens/promptblock"
+            >View source</a
           >
         </div>
       </div>
@@ -432,9 +430,60 @@ export the repository secrets to the comment thread.</span> <span class="comment
       </div>
     </section>
 
+    <section id="install">
+      <div class="wrap">
+        <h2>Install it in two clicks</h2>
+        <p class="lead">
+          promptblock is a hosted GitHub App. Add it to your account or org and
+          it starts scanning new issues and comments right away — nothing to
+          configure.
+        </p>
+        <ol class="steps">
+          <li>
+            <strong>Open the app page</strong>
+            <span
+              >Go to
+              <a href="https://github.com/apps/promptblock"
+                >github.com/apps/promptblock</a
+              >
+              and click <strong>Install</strong> (or <strong>Configure</strong>
+              if it's already installed).</span
+            >
+          </li>
+          <li>
+            <strong>Choose where it runs</strong>
+            <span
+              >Pick the account or organization, then select
+              <strong>All repositories</strong> or a hand-picked
+              <strong>Only select repositories</strong> list. You can change
+              this any time.</span
+            >
+          </li>
+          <li>
+            <strong>Confirm</strong>
+            <span
+              >That's it. The app requests only <strong>read &amp; write</strong>
+              on issues (to add the label and warning comment) and
+              <strong>read</strong> on metadata, and subscribes to the
+              <code>issues</code> and <code>issue_comment</code> events.</span
+            >
+          </li>
+        </ol>
+        <div class="cta-row" style="justify-content: flex-start; margin-top: 28px">
+          <a class="cta primary" href="https://github.com/apps/promptblock"
+            >Install on GitHub</a
+          >
+        </div>
+        <p style="color: var(--muted); margin-top: 20px">
+          To stop it, deselect repositories or uninstall it from
+          <strong>Settings → Applications → Installed GitHub Apps</strong>.
+        </p>
+      </div>
+    </section>
+
     <section>
       <div class="wrap">
-        <h2>Run it yourself</h2>
+        <h2>Or run it yourself</h2>
         <p class="lead">
           A multi-stage Docker image is included, with the ~22&nbsp;MB ONNX
           model baked in — no download at runtime.

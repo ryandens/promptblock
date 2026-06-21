@@ -9,7 +9,7 @@
     "build": "tsc",
     "start": "probot run ./lib/index.js",
     "dev": "tsc --watch & probot run ./lib/index.js",
-    "test": "node --test \"test/**/*.test.ts\"",
+    "test": "tsc && node --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.png" alt="promptblock logo" width="320" />
+</p>
+
 # promptblock
 
 A GitHub App that scans issues and comments for **prompt-injection attempts**

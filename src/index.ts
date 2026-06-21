@@ -3,36 +3,84 @@ import { scanBody, warmup, type ScanResult } from "./scan.js";
 
 const FLAG_LABEL = "possible-prompt-injection";
 
+type IssueEvent = "issues.opened" | "issues.edited";
+type CommentEvent = "issue_comment.created" | "issue_comment.edited";
+
+/**
+ * Reaction emojis used to show the app's progress and verdict directly on the
+ * issue/comment being examined:
+ *   eyes — currently scanning this content
+ *   +1   — scanned and looks clean
+ *   -1   — scanned and looks like a prompt-injection attempt
+ */
+type Reaction = "eyes" | "+1" | "-1";
+
 export default (app: Probot) => {
   // Warm the ML model at boot so the first issue doesn't pay the load cost.
   void warmup().catch((err) => app.log.warn({ err }, "scanner warmup failed"));
 
   app.on(["issues.opened", "issues.edited"], async (context) => {
     const { issue } = context.payload;
+    const addReaction = (content: Reaction) =>
+      postReaction(context, () =>
+        context.octokit.rest.reactions.createForIssue({
+          ...context.repo(),
+          issue_number: issue.number,
+          content,
+        }),
+      );
+
+    await addReaction("eyes");
     const body = `${issue.title ?? ""}\n\n${issue.body ?? ""}`;
     const result = await scanBody(body, "issue");
-    await react(context, result, issue.number);
+    await addReaction(result.flagged ? "-1" : "+1");
+    if (result.flagged) await flagIssue(context, result, issue.number);
   });
 
   app.on(["issue_comment.created", "issue_comment.edited"], async (context) => {
     const { comment, issue } = context.payload;
+    const addReaction = (content: Reaction) =>
+      postReaction(context, () =>
+        context.octokit.rest.reactions.createForIssueComment({
+          ...context.repo(),
+          comment_id: comment.id,
+          content,
+        }),
+      );
+
+    await addReaction("eyes");
     const result = await scanBody(comment.body ?? "", "issue_comment");
-    await react(context, result, issue.number);
+    await addReaction(result.flagged ? "-1" : "+1");
+    if (result.flagged) await flagIssue(context, result, issue.number);
   });
 };
 
 /**
- * React to a scan result by labeling the issue and leaving a single warning
- * comment. We deliberately surface *that* hidden content existed and was
- * flagged, without echoing the raw injection payload back into the thread.
+ * Post a reaction best-effort. Reactions are progress signals, not the core
+ * job, so a failure here (e.g. a transient API error) is logged but must not
+ * abort scanning or flagging.
  */
-async function react(
-  context: Context<"issues.opened" | "issues.edited" | "issue_comment.created" | "issue_comment.edited">,
+async function postReaction(
+  context: Context<IssueEvent | CommentEvent>,
+  post: () => Promise<unknown>,
+): Promise<void> {
+  try {
+    await post();
+  } catch (err) {
+    context.log.warn({ err }, "failed to add reaction");
+  }
+}
+
+/**
+ * Flag a bad issue by labeling it and leaving a single warning comment. We
+ * deliberately surface *that* hidden content existed and was flagged, without
+ * echoing the raw injection payload back into the thread.
+ */
+async function flagIssue(
+  context: Context<IssueEvent | CommentEvent>,
   result: ScanResult,
   issueNumber: number,
 ): Promise<void> {
-  if (!result.flagged) return;
-
   const repo = context.repo();
   context.log.warn(
     { issue: issueNumber, hidden: result.hiddenInjection, findings: result.findings },

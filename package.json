@@ -9,6 +9,7 @@
     "build": "tsc",
     "start": "probot run ./lib/index.js",
     "dev": "tsc --watch & probot run ./lib/index.js",
+    "smee:new": "node ./scripts/new-smee-channel.ts",
     "test": "tsc && node --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
     "lint": "biome check",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.0",
     "@types/node": "^24.0.0",
+    "smee-client": "^5.0.0",
     "typescript": "^6.0.0"
   },
   "engines": {

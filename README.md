@@ -39,6 +39,29 @@ To register the app against GitHub, run `pnpm start` once and follow the
 manifest registration flow (the manifest lives in `app.yml`), or create the app
 manually and fill in `.env` from `.env.example`.
 
+### Testing webhooks locally
+
+GitHub can't reach `localhost`, so local development forwards webhook
+deliveries through a [smee.io](https://smee.io) proxy. The
+[`smee-client`](https://github.com/probot/smee-client) is bundled as a
+dev dependency, and Probot connects it automatically when `WEBHOOK_PROXY_URL`
+is set.
+
+```bash
+pnpm smee:new      # provisions a fresh smee.io channel and prints the URL
+```
+
+Paste the printed URL into `.env` as `WEBHOOK_PROXY_URL=...` and set the GitHub
+App's webhook URL (Settings → Advanced) to the same value. Then:
+
+```bash
+pnpm start
+```
+
+Probot starts the local server *and* the smee client, forwarding every GitHub
+delivery to `http://localhost:3000/api/github/webhooks`. Open an issue (or edit
+a comment) on a repo the app is installed on to exercise the scanner end to end.
+
 Dependency installs are subject to a supply-chain policy in
 `pnpm-workspace.yaml`: no package version is installed until it has been public
 for at least 5 days (`minimumReleaseAge`), and no package may run install/build

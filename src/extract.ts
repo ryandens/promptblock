@@ -55,9 +55,10 @@ export function hiddenText(body: string): string {
 /** True if the body contains any non-empty HTML comment. */
 export function hasHiddenContent(body: string): boolean {
   HTML_COMMENT.lastIndex = 0;
-  let match: RegExpExecArray | null;
-  while ((match = HTML_COMMENT.exec(body)) !== null) {
+  let match = HTML_COMMENT.exec(body);
+  while (match !== null) {
     if (match[1].trim()) return true;
+    match = HTML_COMMENT.exec(body);
   }
   return false;
 }

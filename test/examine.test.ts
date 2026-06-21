@@ -1,6 +1,6 @@
-import { test } from "node:test";
 import assert from "node:assert/strict";
-import { examine, type ExamineDeps, type Reaction } from "../lib/examine.js";
+import { test } from "node:test";
+import { type ExamineDeps, examine, type Reaction } from "../lib/examine.js";
 import type { ScanResult } from "../lib/scan.js";
 
 function scanResult(flagged: boolean): ScanResult {
@@ -63,7 +63,9 @@ test("flagging happens after the verdict reaction", async () => {
 test("the body and source are passed through to the scanner", async () => {
   const h = harness(scanResult(false));
   await examine(h.deps, "the raw body", "issue_comment");
-  assert.deepEqual(h.scanned, [{ body: "the raw body", source: "issue_comment" }]);
+  assert.deepEqual(h.scanned, [
+    { body: "the raw body", source: "issue_comment" },
+  ]);
 });
 
 test("returns the scan result", async () => {

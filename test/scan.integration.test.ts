@@ -1,5 +1,5 @@
-import { test, before } from "node:test";
 import assert from "node:assert/strict";
+import { before, test } from "node:test";
 // Imports the built output (`pnpm test` runs `tsc` first): Node can't execute
 // TypeScript source that imports sibling modules via `.js` specifiers, which
 // scan.ts does.

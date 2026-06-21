@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { examine, type ExamineDeps, type Reaction } from "../src/examine.ts";
-import type { ScanResult } from "../src/scan.ts";
+import { examine, type ExamineDeps, type Reaction } from "../lib/examine.js";
+import type { ScanResult } from "../lib/scan.js";
 
 function scanResult(flagged: boolean): ScanResult {
   return { flagged, hiddenInjection: false, findings: [] };

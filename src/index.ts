@@ -1,19 +1,11 @@
 import type { Probot, Context } from "probot";
 import { scanBody, warmup, type ScanResult } from "./scan.js";
+import { examine } from "./examine.js";
 
 const FLAG_LABEL = "possible-prompt-injection";
 
 type IssueEvent = "issues.opened" | "issues.edited";
 type CommentEvent = "issue_comment.created" | "issue_comment.edited";
-
-/**
- * Reaction emojis used to show the app's progress and verdict directly on the
- * issue/comment being examined:
- *   eyes — currently scanning this content
- *   +1   — scanned and looks clean
- *   -1   — scanned and looks like a prompt-injection attempt
- */
-type Reaction = "eyes" | "+1" | "-1";
 
 export default (app: Probot) => {
   // Warm the ML model at boot so the first issue doesn't pay the load cost.
@@ -21,37 +13,43 @@ export default (app: Probot) => {
 
   app.on(["issues.opened", "issues.edited"], async (context) => {
     const { issue } = context.payload;
-    const addReaction = (content: Reaction) =>
-      postReaction(context, () =>
-        context.octokit.rest.reactions.createForIssue({
-          ...context.repo(),
-          issue_number: issue.number,
-          content,
-        }),
-      );
-
-    await addReaction("eyes");
     const body = `${issue.title ?? ""}\n\n${issue.body ?? ""}`;
-    const result = await scanBody(body, "issue");
-    await addReaction(result.flagged ? "-1" : "+1");
-    if (result.flagged) await flagIssue(context, result, issue.number);
+    await examine(
+      {
+        scan: scanBody,
+        addReaction: (content) =>
+          postReaction(context, () =>
+            context.octokit.rest.reactions.createForIssue({
+              ...context.repo(),
+              issue_number: issue.number,
+              content,
+            }),
+          ),
+        flag: (result) => flagIssue(context, result, issue.number),
+      },
+      body,
+      "issue",
+    );
   });
 
   app.on(["issue_comment.created", "issue_comment.edited"], async (context) => {
     const { comment, issue } = context.payload;
-    const addReaction = (content: Reaction) =>
-      postReaction(context, () =>
-        context.octokit.rest.reactions.createForIssueComment({
-          ...context.repo(),
-          comment_id: comment.id,
-          content,
-        }),
-      );
-
-    await addReaction("eyes");
-    const result = await scanBody(comment.body ?? "", "issue_comment");
-    await addReaction(result.flagged ? "-1" : "+1");
-    if (result.flagged) await flagIssue(context, result, issue.number);
+    await examine(
+      {
+        scan: scanBody,
+        addReaction: (content) =>
+          postReaction(context, () =>
+            context.octokit.rest.reactions.createForIssueComment({
+              ...context.repo(),
+              comment_id: comment.id,
+              content,
+            }),
+          ),
+        flag: (result) => flagIssue(context, result, issue.number),
+      },
+      comment.body ?? "",
+      "issue_comment",
+    );
   });
 };
 

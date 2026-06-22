@@ -24,7 +24,9 @@ test("captures multiple and multi-line HTML comments", () => {
   const hidden = extractSegments(body).filter((s) => s.kind === "html-comment");
   assert.equal(hidden.length, 2);
   assert.equal(hidden[0].text, "first");
+  assert.equal(hidden[0].index, 1);
   assert.equal(hidden[1].text, "second line");
+  assert.equal(hidden[1].index, 2);
 });
 
 test("hiddenText concatenates only the hidden parts", () => {

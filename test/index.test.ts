@@ -188,6 +188,29 @@ test("flags a bad issue and still clears eyes", async () => {
   assert.equal(comments.length, 1);
 });
 
+test("flags hidden comment findings with a stable comment index", async () => {
+  const app = buildApp({
+    flagged: true,
+    hiddenInjection: true,
+    findings: [
+      {
+        allowed: false,
+        segment: { kind: "html-comment", text: "redacted", index: 2 },
+        riskLevel: "high",
+        score: 0.96,
+      },
+    ],
+  });
+  const { ctx, comments } = app.context(issuePayload("mallory"));
+  const handler = app.handlers.get("issues.opened");
+  assert.ok(handler);
+  await handler(ctx);
+
+  assert.equal(comments.length, 1);
+  assert.match(String(comments[0].body), /hidden HTML comment #2/);
+  assert.doesNotMatch(String(comments[0].body), /redacted/);
+});
+
 test("skips a comment authored by the bot itself", async () => {
   const app = buildApp(cleanResult());
   const { ctx, created } = app.context(commentPayload(SELF_LOGIN));

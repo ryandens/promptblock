@@ -209,7 +209,9 @@ async function flagIssue(
   const lines = flagged.map((f) => {
     const where =
       f.segment.kind === "html-comment"
-        ? "hidden HTML comment"
+        ? `hidden HTML comment${
+            f.segment.index !== undefined ? ` #${f.segment.index}` : ""
+          }`
         : "visible text";
     const score = f.score !== undefined ? `, score ${f.score.toFixed(2)}` : "";
     return `- **${where}** — risk \`${f.riskLevel}\`${score}`;

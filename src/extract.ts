@@ -14,6 +14,8 @@ export interface ExtractedSegment {
   kind: "visible" | "html-comment";
   /** The raw text of the segment. */
   text: string;
+  /** One-based index for repeated segment kinds, used for safe location hints. */
+  index?: number;
 }
 
 const HTML_COMMENT = /<!--([\s\S]*?)-->/g;
@@ -38,9 +40,9 @@ export function extractSegments(body: string): ExtractedSegment[] {
   if (visibleTrimmed) {
     segments.push({ kind: "visible", text: visibleTrimmed });
   }
-  for (const text of hidden) {
-    segments.push({ kind: "html-comment", text });
-  }
+  hidden.forEach((text, index) => {
+    segments.push({ kind: "html-comment", text, index: index + 1 });
+  });
   return segments;
 }
 

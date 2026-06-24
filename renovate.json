@@ -3,6 +3,6 @@
   "extends": [
     "config:recommended"
   ],
-  "minimumReleaseAge": "5 days",
+  "minimumReleaseAge": "1 day",
   "internalChecksFilter": "strict"
 }

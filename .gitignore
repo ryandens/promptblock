@@ -10,3 +10,6 @@ lib/
 
 # devbox-managed corepack/pnpm shims
 .devbox/
+
+# Claude Code worktrees
+.claude/worktrees/

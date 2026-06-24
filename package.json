@@ -21,7 +21,7 @@
     "probot": "^14.3.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.0",
+    "@biomejs/biome": "2.5.1",
     "@types/node": "^24.0.0",
     "smee-client": "^5.0.0",
     "typescript": "^6.0.0"

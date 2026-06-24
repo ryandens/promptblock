@@ -2,6 +2,10 @@
   <img src="docs/logo.png" alt="promptblock logo" width="320" />
 </p>
 
+<p align="center">
+  <a href="https://ryandens.github.io/promptblock/">Website &amp; docs</a>
+</p>
+
 # promptblock
 
 A GitHub App that scans issues and comments for **prompt-injection attempts**

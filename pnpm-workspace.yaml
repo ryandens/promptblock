@@ -1,8 +1,10 @@
 # Supply-chain guard: don't install any package version until it has been
-# public for at least 5 days (7200 minutes). This blunts fast-moving npm
+# public for at least 1 day (1440 minutes). This blunts fast-moving npm
 # account-compromise campaigns that rely on installs happening within hours
-# of a malicious publish. See https://pnpm.io/settings#minimumreleaseage
-minimumReleaseAge: 7200
+# of a malicious publish. A short window is acceptable here because Socket
+# (https://socket.dev) independently scans dependencies for malicious
+# behavior. See https://pnpm.io/settings#minimumreleaseage
+minimumReleaseAge: 1440
 
 # Build-script policy (pnpm 11 `allowBuilds`). Every value is `false`: no
 # dependency may run install/build scripts. onnxruntime-node and sharp ship

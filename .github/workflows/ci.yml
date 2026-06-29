@@ -35,11 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      # The actionlint version and the download script's pinned commit are both
-      # kept up to date by Renovate — see the customManagers in renovate.json.
+      # The actionlint version and the download script's pinned commit are kept
+      # in lockstep with upstream GitHub release tags by Renovate — the commit
+      # below is the v1.7.11 tag. See the customManager in renovate.json.
       - name: Download actionlint
         id: get_actionlint
-        # renovate: datasource=github-releases depName=rhysd/actionlint
         env:
           ACTIONLINT_VERSION: 1.7.11
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/393031adb9afb225ee52ae2ccd7a5af5525e03e8/scripts/download-actionlint.bash) "$ACTIONLINT_VERSION"

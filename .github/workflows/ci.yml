@@ -42,7 +42,7 @@ jobs:
         # renovate: datasource=github-releases depName=rhysd/actionlint
         env:
           ACTIONLINT_VERSION: 1.7.11
-        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/393031adb9afb225ee52ae2ccd7a5af5525e03e8/scripts/download-actionlint.bash) "$ACTIONLINT_VERSION"
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7/scripts/download-actionlint.bash) "$ACTIONLINT_VERSION"
         shell: bash
       - name: Check workflow files
         run: ${{ steps.get_actionlint.outputs.executable }} -color

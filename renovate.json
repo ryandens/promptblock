@@ -8,23 +8,16 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update the pinned actionlint release version in CI",
+      "description": "Keep actionlint's version and its pinned download-script commit in lockstep with upstream GitHub release tags",
       "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s+ACTIONLINT_VERSION:\\s*(?<currentValue>\\S+)"
+        "ACTIONLINT_VERSION:\\s*(?<currentValue>\\S+)",
+        "raw\\.githubusercontent\\.com/rhysd/actionlint/(?<currentDigest>[0-9a-f]{40})/"
       ],
+      "depNameTemplate": "rhysd/actionlint",
+      "datasourceTemplate": "github-tags",
       "extractVersionTemplate": "^v?(?<version>.+)$"
-    },
-    {
-      "customType": "regex",
-      "description": "Update the pinned commit of actionlint's download-actionlint.bash script in CI",
-      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "raw\\.githubusercontent\\.com/rhysd/actionlint/(?<currentDigest>[a-f0-9]{40})/"
-      ],
-      "depNameTemplate": "https://github.com/rhysd/actionlint",
-      "datasourceTemplate": "git-refs",
-      "currentValueTemplate": "main"
     }
   ]
 }

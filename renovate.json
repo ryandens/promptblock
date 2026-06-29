@@ -10,10 +10,8 @@
       "customType": "regex",
       "description": "Keep actionlint's version and its pinned download-script commit in lockstep with upstream GitHub release tags",
       "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
-      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "ACTIONLINT_VERSION:\\s*(?<currentValue>\\S+)",
-        "raw\\.githubusercontent\\.com/rhysd/actionlint/(?<currentDigest>[0-9a-f]{40})/"
+        "ACTIONLINT_VERSION:\\s*(?<currentValue>\\S+)[\\s\\S]*?raw\\.githubusercontent\\.com/rhysd/actionlint/(?<currentDigest>[0-9a-f]{40})/"
       ],
       "depNameTemplate": "rhysd/actionlint",
       "datasourceTemplate": "github-tags",

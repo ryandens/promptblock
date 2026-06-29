@@ -35,9 +35,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # The actionlint version and the download script's pinned commit are both
+      # kept up to date by Renovate — see the customManagers in renovate.json.
       - name: Download actionlint
         id: get_actionlint
-        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        # renovate: datasource=github-releases depName=rhysd/actionlint
+        env:
+          ACTIONLINT_VERSION: 1.7.11
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/393031adb9afb225ee52ae2ccd7a5af5525e03e8/scripts/download-actionlint.bash) "$ACTIONLINT_VERSION"
         shell: bash
       - name: Check workflow files
         run: ${{ steps.get_actionlint.outputs.executable }} -color

@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@huggingface/transformers": "^4.0.0",
-    "@stackone/defender": "^0.7.1",
+    "@stackone/defender": "^0.8.0",
     "probot": "^14.3.2"
   },
   "devDependencies": {

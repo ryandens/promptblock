@@ -12,8 +12,8 @@ importers:
         specifier: ^4.0.0
         version: 4.2.0
       '@stackone/defender':
-        specifier: ^0.7.1
-        version: 0.7.3(@huggingface/transformers@4.2.0)(onnxruntime-node@1.24.3)
+        specifier: ^0.8.0
+        version: 0.8.2(@huggingface/transformers@4.2.0)(onnxruntime-node@1.24.3)
       probot:
         specifier: ^14.3.2
         version: 14.3.2
@@ -398,8 +398,8 @@ packages:
   '@protobufjs/utf8@1.1.1':
     resolution: {integrity: sha512-oOAWABowe8EAbMyWKM0tYDKi8Yaox52D+HWZhAIJqQXbqe0xI/GV7FhLWqlEKreMkfDjshR5FKgi3mnle0h6Eg==}
 
-  '@stackone/defender@0.7.3':
-    resolution: {integrity: sha512-njxl7imPNUO096PbLJopJG9qGxGnrorssT1jNwTy/jE40IKIG519hq6xQre7GCSY/lSRCiGzF3JE+LNu/u/NOA==}
+  '@stackone/defender@0.8.2':
+    resolution: {integrity: sha512-FRH1UX5WnPjSaT7m3ne3EoTDzeLAIXgVGqxdTFV2BY3kDe44tj3j+aOCe43E/08PqSmF1vHhDIgiNle/WEFxvw==}
     peerDependencies:
       '@huggingface/transformers': ^3.0.0
       fasttext.wasm: ^1.0.0
@@ -673,8 +673,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  nanoid@3.3.11:
-    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
+  nanoid@3.3.17:
+    resolution: {integrity: sha512-xQLf0A3HOMlgHq0n247/LRuAOYmB7dXJ/DvAxGvsSBij45XtBSmQycu+F8ODbHwns/XyFZagyL1+J0Offw1E0g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -1166,9 +1166,9 @@ snapshots:
 
   '@protobufjs/utf8@1.1.1': {}
 
-  '@stackone/defender@0.7.3(@huggingface/transformers@4.2.0)(onnxruntime-node@1.24.3)':
+  '@stackone/defender@0.8.2(@huggingface/transformers@4.2.0)(onnxruntime-node@1.24.3)':
     dependencies:
-      nanoid: 3.3.11
+      nanoid: 3.3.17
     optionalDependencies:
       '@huggingface/transformers': 4.2.0
       onnxruntime-node: 1.24.3
@@ -1341,7 +1341,7 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  nanoid@3.3.11: {}
+  nanoid@3.3.17: {}
 
   npx-import-light@1.0.0: {}
 

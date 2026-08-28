@@ -5,6 +5,11 @@
   ],
   "minimumReleaseAge": "1 day",
   "internalChecksFilter": "strict",
+  "lockFileMaintenance": {
+    "description": "Re-resolve pnpm-lock.yaml weekly so transitive dependencies stay current even when no direct dependency update forces a full resolve.",
+    "enabled": true,
+    "schedule": ["before 4am on monday"]
+  },
   "customManagers": [
     {
       "customType": "regex",

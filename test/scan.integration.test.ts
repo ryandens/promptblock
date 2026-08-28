@@ -35,7 +35,7 @@ test("Tier 2 (WASM) flags an overt prompt-injection payload with a high ML score
   const score = bad.score;
   assert.ok(typeof score === "number", "expected a numeric Tier 2 score");
   assert.ok(score > 0.5, `expected a high ML score, got ${score}`);
-  assert.equal(bad.riskLevel, "high");
+  assert.equal(bad.riskLevel, "critical");
 });
 
 test("does not flag a benign issue body", async () => {

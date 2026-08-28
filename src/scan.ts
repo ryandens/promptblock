@@ -16,7 +16,7 @@ export interface SegmentFinding {
   segment: ExtractedSegment;
   /** Whether the scanner would allow this content through to an LLM. */
   allowed: boolean;
-  /** "low" | "medium" | "high" risk taxonomy. */
+  /** "low" | "medium" | "high" | "critical" risk taxonomy. */
   riskLevel: string;
   /** Tier 2 ML classifier score, when present. */
   score?: number;

@@ -6,6 +6,12 @@
 # behavior. See https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 1440
 
+# Keep transitive security upgrades scoped to the packages that require them.
+overrides:
+  '@huggingface/transformers>sharp': 0.35.4
+  '@stackone/defender>nanoid': 3.3.18
+  'onnxruntime-node>adm-zip': 0.6.0
+
 # Build-script policy (pnpm 11 `allowBuilds`). Every value is `false`: no
 # dependency may run install/build scripts. onnxruntime-node and sharp ship
 # native binaries via install scripts, but we deliberately skip them so the ML

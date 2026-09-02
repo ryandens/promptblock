@@ -1,4 +1,5 @@
 node_modules/
+/.pnpm-store/
 lib/
 *.log
 .env
@@ -7,9 +8,6 @@ lib/
 # GitHub App private key + runtime secrets
 *.pem
 .data/
-
-# devbox-managed corepack/pnpm shims
-.devbox/
 
 # Claude Code worktrees
 .claude/worktrees/

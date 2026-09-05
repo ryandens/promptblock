@@ -29,6 +29,6 @@
   "engines": {
     "node": ">=22.18"
   },
-  "packageManager": "pnpm@11.25.0",
+  "packageManager": "pnpm@12.3.4",
   "license": "Apache-2.0"
 }

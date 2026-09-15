@@ -1,15 +1,9 @@
-# Supply-chain guard: don't install any package version until it has been
-# public for at least 1 day (1440 minutes). This blunts fast-moving npm
-# account-compromise campaigns that rely on installs happening within hours
-# of a malicious publish. A short window is acceptable here because Socket
-# (https://socket.dev) independently scans dependencies for malicious
-# behavior. See https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 1440
 
 # Keep transitive security upgrades scoped to the packages that require them.
 overrides:
   '@huggingface/transformers>sharp': 0.35.4
-  '@stackone/defender>nanoid': 3.3.18
+  '@stackone/defender>nanoid': 6.0.1
   'onnxruntime-node>adm-zip': 0.6.0
 
 # Build-script policy (pnpm 11 `allowBuilds`). Every value is `false`: no

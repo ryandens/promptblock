@@ -7,10 +7,10 @@
 minimumReleaseAge: 720
 
 # Build-script policy (pnpm 11 `allowBuilds`). Every value is `false`: no
-# dependency may run install/build scripts. onnxruntime-node and sharp ship
-# native binaries via install scripts, but we deliberately skip them so the ML
-# classifier falls back to the pure-WASM onnxruntime-web runtime — no native
-# code is fetched or executed. `false` also suppresses ERR_PNPM_IGNORED_BUILDS.
+# dependency may run install/build scripts. Defender uses the native CPU
+# binaries bundled with onnxruntime-node; skipping its install script prevents
+# additional binary downloads, not native execution or a switch to WASM.
+# `false` also suppresses ERR_PNPM_IGNORED_BUILDS.
 allowBuilds:
   onnxruntime-node: false
   protobufjs: false

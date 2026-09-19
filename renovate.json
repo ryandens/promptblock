@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "minimumReleaseAge": "1 day",
+  "minimumReleaseAge": "12 hours",
   "internalChecksFilter": "strict",
   "lockFileMaintenance": {
     "description": "Re-resolve pnpm-lock.yaml weekly so transitive dependencies stay current even when no direct dependency update forces a full resolve.",

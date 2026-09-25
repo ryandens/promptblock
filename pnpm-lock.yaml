@@ -171,7 +171,7 @@ importers:
         version: 4.3.0(@types/node@24.13.6)
       '@stackone/defender':
         specifier: ^0.8.0
-        version: 0.8.2(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)
+        version: 0.8.3(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)
       onnxruntime-node:
         specifier: 1.30.0
         version: 1.30.0
@@ -580,8 +580,9 @@ packages:
   '@protobufjs/utf8@1.1.2':
     resolution: {integrity: sha512-b1UQwcEZ4yCnMCD8DAL1VlbvBJE9/IX4FTIp7BG1xYpf29SLazLSrqUkj4w7Y5y7cCVP6E5tcqqcI0xemPkHug==}
 
-  '@stackone/defender@0.8.2':
-    resolution: {integrity: sha512-FRH1UX5WnPjSaT7m3ne3EoTDzeLAIXgVGqxdTFV2BY3kDe44tj3j+aOCe43E/08PqSmF1vHhDIgiNle/WEFxvw==}
+  '@stackone/defender@0.8.3':
+    resolution: {integrity: sha512-JbiUplyeDljPoCQe7LruvfUQKgVkIYOyQ4V3PNixvM/vEbfzo/C1UWFm1RuSvdQ6SzLKI3CGZ0wv1qXAm4q06w==}
+    engines: {node: '>=22'}
     peerDependencies:
       '@huggingface/transformers': ^3.0.0
       fasttext.wasm: ^1.0.0
@@ -734,8 +735,8 @@ packages:
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
-  content-type@3.1.0:
-    resolution: {integrity: sha512-z26wZR7iXahgpSK7XgnB4IbRVmUNSODvsX9qC9TAru7AcWGiqn5YKy+OH3PLRrwyAnewykKhCqnD+VV3a8uT8Q==}
+  content-type@3.1.1:
+    resolution: {integrity: sha512-GW4qUsfFo59d0HbUibDlWv5wPz+vAAcaTWbKIuKCf0JkC7wWkSyf8f13IpXn5JkeMlB2P8iTSSIjwXljorg2vA==}
     engines: {node: '>=22'}
 
   dateformat@4.6.3:
@@ -842,8 +843,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  nanoid@3.3.17:
-    resolution: {integrity: sha512-xQLf0A3HOMlgHq0n247/LRuAOYmB7dXJ/DvAxGvsSBij45XtBSmQycu+F8ODbHwns/XyFZagyL1+J0Offw1E0g==}
+  nanoid@3.3.18:
+    resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -1289,7 +1290,7 @@ snapshots:
       '@octokit/endpoint': 11.0.5
       '@octokit/request-error': 7.1.2
       '@octokit/types': 18.0.0
-      content-type: 3.1.0
+      content-type: 3.1.1
       json-with-bigint: 3.5.12
       universal-user-agent: 7.0.3
 
@@ -1349,9 +1350,9 @@ snapshots:
 
   '@protobufjs/utf8@1.1.2': {}
 
-  '@stackone/defender@0.8.2(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)':
+  '@stackone/defender@0.8.3(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)':
     dependencies:
-      nanoid: 3.3.17
+      nanoid: 3.3.18
     optionalDependencies:
       '@huggingface/transformers': 4.3.0(@types/node@24.13.6)
       onnxruntime-node: 1.30.0
@@ -1430,7 +1431,7 @@ snapshots:
 
   colorette@2.0.20: {}
 
-  content-type@3.1.0: {}
+  content-type@3.1.1: {}
 
   dateformat@4.6.3: {}
 
@@ -1514,7 +1515,7 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  nanoid@3.3.17: {}
+  nanoid@3.3.18: {}
 
   npx-import-light@1.0.0: {}
 

@@ -168,10 +168,10 @@ importers:
     dependencies:
       '@huggingface/transformers':
         specifier: ^4.0.0
-        version: 4.3.0(@types/node@24.13.6)
+        version: 4.3.1(@types/node@24.13.6)
       '@stackone/defender':
         specifier: ^0.8.0
-        version: 0.8.2(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)
+        version: 0.8.2(@huggingface/transformers@4.3.1(@types/node@24.13.6))(onnxruntime-node@1.30.0)
       onnxruntime-node:
         specifier: 1.30.0
         version: 1.30.0
@@ -261,8 +261,8 @@ packages:
   '@huggingface/tokenizers@0.2.0':
     resolution: {integrity: sha512-LidMHe1FpcSYH4vcSjXooda34pC0M8m1gmDOv7SQi6Iv+ib1zX7J3sHBCC9/3FPCkn2k1b55FneVqMRxrr99pg==}
 
-  '@huggingface/transformers@4.3.0':
-    resolution: {integrity: sha512-fL1A/WUZwouPrOlYxU5dzIwD2T5J781JiB2jDR8bFe5DwCj0Gfudq+NEXCMno49kQgajHA7xQkrRLJlqG1veEA==}
+  '@huggingface/transformers@4.3.1':
+    resolution: {integrity: sha512-5+voSeUCFK6PCKlY15dPhNOKq3/zOTxDN7oC+Wy9dFb1QZ0TSQomZRRy7URRK8YRuUoE9fGMQTTPC5d/pWBJhA==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1057,7 +1057,7 @@ snapshots:
 
   '@huggingface/tokenizers@0.2.0': {}
 
-  '@huggingface/transformers@4.3.0(@types/node@24.13.6)':
+  '@huggingface/transformers@4.3.1(@types/node@24.13.6)':
     dependencies:
       '@huggingface/jinja': 0.5.10
       '@huggingface/tokenizers': 0.2.0
@@ -1349,11 +1349,11 @@ snapshots:
 
   '@protobufjs/utf8@1.1.2': {}
 
-  '@stackone/defender@0.8.2(@huggingface/transformers@4.3.0(@types/node@24.13.6))(onnxruntime-node@1.30.0)':
+  '@stackone/defender@0.8.2(@huggingface/transformers@4.3.1(@types/node@24.13.6))(onnxruntime-node@1.30.0)':
     dependencies:
       nanoid: 3.3.17
     optionalDependencies:
-      '@huggingface/transformers': 4.3.0(@types/node@24.13.6)
+      '@huggingface/transformers': 4.3.1(@types/node@24.13.6)
       onnxruntime-node: 1.30.0
 
   '@types/node@24.13.6':

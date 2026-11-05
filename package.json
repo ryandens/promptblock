@@ -18,7 +18,7 @@
   "dependencies": {
     "@huggingface/transformers": "^4.0.0",
     "@stackone/defender": "^0.9.0",
-    "onnxruntime-node": "1.30.0",
+    "onnxruntime-node": "1.31.1",
     "probot": "^14.3.2"
   },
   "devDependencies": {

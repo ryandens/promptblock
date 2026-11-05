@@ -6,6 +6,11 @@
 # behavior. See https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 720
 
+# Defender and Transformers must load the same native runtime to avoid Linux
+# shared-library collisions. Follow the direct dependency when Renovate updates it.
+overrides:
+  '@huggingface/transformers>onnxruntime-node': '$onnxruntime-node'
+
 # Build-script policy (pnpm 11 `allowBuilds`). Every value is `false`: no
 # dependency may run install/build scripts. Defender uses the native CPU
 # binaries bundled with onnxruntime-node; skipping its install script prevents

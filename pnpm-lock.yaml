@@ -190,10 +190,10 @@ importers:
     dependencies:
       '@huggingface/transformers':
         specifier: ^4.0.0
-        version: 4.3.2(@types/node@26.6.6)
+        version: 4.3.2(@types/node@26.6.10)
       '@stackone/defender':
         specifier: ^0.9.0
-        version: 0.9.6(@huggingface/transformers@4.3.2(@types/node@26.6.6))(onnxruntime-node@1.31.1)
+        version: 0.9.6(@huggingface/transformers@4.3.2(@types/node@26.6.10))(onnxruntime-node@1.31.1)
       onnxruntime-node:
         specifier: 1.31.1
         version: 1.31.1
@@ -206,7 +206,7 @@ importers:
         version: 2.6.8
       '@types/node':
         specifier: ^26.0.0
-        version: 26.6.6
+        version: 26.6.10
       smee-client:
         specifier: ^5.0.0
         version: 5.0.0
@@ -491,8 +491,8 @@ packages:
     resolution: {integrity: sha512-L7y8eYc+AwxGr2PWI4WFt1VG4TiJ66c26BD16mXpYIlXxG0SMigM1+m4aTSlYyBr5BlQsGAlz8uDCoZN4SEMcg==}
     engines: {node: '>= 20'}
 
-  '@octokit/endpoint@11.0.5':
-    resolution: {integrity: sha512-iXa654H3yFafF/ieHkukfbgWo2rmXD2ceD0ZOtrPhw1bc3FDch1d9N/TNs0FQ1/cIbwb7kspUX8jzIs8nzb9DQ==}
+  '@octokit/endpoint@11.0.6':
+    resolution: {integrity: sha512-H52ocs+dXsxmLtMPqabXz0p+mNWfe5RacpUHq8sB6mJLiMPU6PF/7O0Bl/U8a8WrV1NzWNYpXwZW0zo0BeoT2A==}
     engines: {node: '>= 20'}
 
   '@octokit/graphql@9.0.5':
@@ -632,8 +632,8 @@ packages:
       onnxruntime-node:
         optional: true
 
-  '@types/node@26.6.6':
-    resolution: {integrity: sha512-MzQj+8Kx3XI40OmUAE6Qoh58ZMNstNNMwn2nfd3qWsfe7nDNSqJNzes4njhz6AHwrSHOffSLwXU6yb474Q4aog==}
+  '@types/node@26.6.10':
+    resolution: {integrity: sha512-WJuPHoGB8WNQuTksNF7SOQpnH02PXeDYz4iueWbBT6/hTWnShY5F3T/hoJA3fY9+uYReDZ7pyTKKx83jQa7aGg==}
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
@@ -814,8 +814,8 @@ packages:
     resolution: {integrity: sha512-D6bTRWh6KahHTK/m4WnjPQyEinNPf9eFLEZSEoj7d6fTibspnAVYfzHvirL7u/aoX5d9YYfIkBVAhmigUELk9w==}
     engines: {node: '>=20.0.0'}
 
-  fast-copy@4.3.1:
-    resolution: {integrity: sha512-CRzQaTFOFUs6PuhsAq7lk9Zqr995soJBcFNZlfJS/5keTSl1awREV9dZW4xS2nX4pWbhIIR0xp4h+J8PQxCkvg==}
+  fast-copy@4.3.4:
+    resolution: {integrity: sha512-o+7Dj5GG97OeQdPAVAo9EQE3O8YmRqUjCg0iqk9P2xH3IXI7rQPRyanWdoqK1QIzGje1oKF+kQudEStF93atyw==}
 
   fast-safe-stringify@2.1.1:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
@@ -831,8 +831,8 @@ packages:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
 
-  global-agent@4.1.7:
-    resolution: {integrity: sha512-pxaZqdsMwPA4i7TuRKpDUONm2xGRjvYdRoidCQz7VleUKVuUfh/4p5Q3QDTGrpAE5Kz5TxxcZ+uqEgTkoKRNtg==}
+  global-agent@4.1.8:
+    resolution: {integrity: sha512-w0d9uka6hldJV85fYj/FsKNsGoUNQzJiWdUxWYYbIlHZVoZEhybFJO4XlkJ6uhAG2qytMfNOyLhN8zQxXYjfjg==}
     engines: {node: '>=10.0'}
 
   globalthis@1.0.4:
@@ -1100,13 +1100,13 @@ snapshots:
 
   '@huggingface/tokenizers@0.2.0': {}
 
-  '@huggingface/transformers@4.3.2(@types/node@26.6.6)':
+  '@huggingface/transformers@4.3.2(@types/node@26.6.10)':
     dependencies:
       '@huggingface/jinja': 0.5.13
       '@huggingface/tokenizers': 0.2.0
       onnxruntime-node: 1.31.1
       onnxruntime-web: 1.31.0-dev.20260914-8d85527a0
-      sharp: 0.35.5(@types/node@26.6.6)
+      sharp: 0.35.5(@types/node@26.6.10)
     transitivePeerDependencies:
       - '@types/node'
 
@@ -1267,7 +1267,7 @@ snapshots:
       before-after-hook: 4.0.0
       universal-user-agent: 7.0.3
 
-  '@octokit/endpoint@11.0.5':
+  '@octokit/endpoint@11.0.6':
     dependencies:
       '@octokit/types': 18.0.0
       universal-user-agent: 7.0.3
@@ -1329,7 +1329,7 @@ snapshots:
 
   '@octokit/request@10.0.16':
     dependencies:
-      '@octokit/endpoint': 11.0.5
+      '@octokit/endpoint': 11.0.6
       '@octokit/request-error': 7.1.2
       '@octokit/types': 18.0.0
       content-type: 3.1.1
@@ -1392,14 +1392,14 @@ snapshots:
 
   '@protobufjs/utf8@1.1.2': {}
 
-  '@stackone/defender@0.9.6(@huggingface/transformers@4.3.2(@types/node@26.6.6))(onnxruntime-node@1.31.1)':
+  '@stackone/defender@0.9.6(@huggingface/transformers@4.3.2(@types/node@26.6.10))(onnxruntime-node@1.31.1)':
     dependencies:
       nanoid: 6.0.2
     optionalDependencies:
-      '@huggingface/transformers': 4.3.2(@types/node@26.6.6)
+      '@huggingface/transformers': 4.3.2(@types/node@26.6.10)
       onnxruntime-node: 1.31.1
 
-  '@types/node@26.6.6':
+  '@types/node@26.6.10':
     dependencies:
       undici-types: 8.9.0
 
@@ -1507,7 +1507,7 @@ snapshots:
     dependencies:
       eventsource-parser: 3.1.1
 
-  fast-copy@4.3.1: {}
+  fast-copy@4.3.4: {}
 
   fast-safe-stringify@2.1.1: {}
 
@@ -1517,7 +1517,7 @@ snapshots:
 
   get-caller-file@2.0.5: {}
 
-  global-agent@4.1.7:
+  global-agent@4.1.8:
     dependencies:
       globalthis: 1.0.4
       matcher: 4.0.0
@@ -1582,7 +1582,7 @@ snapshots:
   onnxruntime-node@1.31.1:
     dependencies:
       adm-zip: 0.6.1
-      global-agent: 4.1.7
+      global-agent: 4.1.8
       onnxruntime-common: 1.31.1
 
   onnxruntime-web@1.31.0-dev.20260914-8d85527a0:
@@ -1614,7 +1614,7 @@ snapshots:
     dependencies:
       colorette: 2.0.20
       dateformat: 4.6.3
-      fast-copy: 4.3.1
+      fast-copy: 4.3.4
       fast-safe-stringify: 2.1.1
       help-me: 5.0.0
       joycon: 3.1.1
@@ -1682,7 +1682,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.2
-      '@types/node': 26.6.6
+      '@types/node': 26.6.10
       long: 5.3.2
 
   pump@3.0.4:
@@ -1704,7 +1704,7 @@ snapshots:
     dependencies:
       type-fest: 0.20.2
 
-  sharp@0.35.5(@types/node@26.6.6):
+  sharp@0.35.5(@types/node@26.6.10):
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
@@ -1735,7 +1735,7 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.5
       '@img/sharp-win32-ia32': 0.35.5
       '@img/sharp-win32-x64': 0.35.5
-      '@types/node': 26.6.6
+      '@types/node': 26.6.10
 
   smee-client@5.0.0:
     dependencies:
